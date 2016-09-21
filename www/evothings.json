@@ -9,5 +9,6 @@
       "type": "platform"
     }
   ],
+  "icon": "img/bekklogo.png",
   "index-file": "index.html"
 }
