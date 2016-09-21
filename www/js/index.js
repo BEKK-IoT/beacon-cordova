@@ -1,3 +1,9 @@
+import {firebase} from 'devices-core-firebase';
+
+const TEAM = 'my-awsome-team-name';
+const fb = new firebase(TEAM);
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -20,6 +26,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+      console.log("uihfiuadhusaudsaihd");
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');

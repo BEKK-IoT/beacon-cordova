@@ -1,0 +1,13 @@
+{
+  "name": "beacon-app",
+  "version": "1.0",
+  "uuid": "1da991e9-67ce-4d24-8702-1b651b1fb9b9",
+  "description": "App for testing beacon mobile programming",
+  "tags": [
+    {
+      "label": "ibeacon",
+      "type": "platform"
+    }
+  ],
+  "index-file": "index.html"
+}

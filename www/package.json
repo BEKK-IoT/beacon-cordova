@@ -1,0 +1,30 @@
+{
+  "name": "beacon-app",
+  "version": "1.0.0",
+  "main": "js/index.js",
+  "scripts": {
+    "app": "babel-node js/index.js"
+  },
+  "engines": {
+    "node": "4.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BEKK-IoT/arduino-uno.git"
+  },
+  "devDependencies": {
+    "babelify": "^6.3.0",
+    "browserify": "^11.0.1",
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BEKK-IoT/beacon-cordova/issues"
+  },
+  "homepage": "https://github.com/BEKK-IoT/beacon-cordova#readme",
+  "dependencies": {
+    "devices-core": "bekk-iot/devices-core-firebase"
+  }
+}
