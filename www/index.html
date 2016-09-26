@@ -10,10 +10,22 @@
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="dist/bundle.js"></script>
+
+      	<script>
+      	// Redirect console.log to Evothings Workbench.
+      	if (window.hyper && window.hyper.log) { console.log = hyper.log }
+      	</script>
+        
     </head>
     <body>
+      <header>
+        Empty app
+      </header>
         <div class="app">
             <h1>Empty app</h1>
+            <div class="container">
+test
+            </div>
 
         </div>
     </body>

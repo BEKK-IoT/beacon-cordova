@@ -14,7 +14,7 @@ There is two main ways you can build and play around with the template in a IOS 
   - [IOS](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html)
   - [Andoird](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html)
 3. You can check if the installation finished correctly by using the following command:
-  - ` cordova requirements`
+  - `cordova requirements`
 4. You build the code with
   - `cordova build <platform name>`
 5. You can run and build the code with
