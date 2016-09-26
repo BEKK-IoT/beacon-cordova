@@ -24,11 +24,9 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
 
+    receivedEvent: function(id) {
         console.log('Received Event: ' + id);
-        console.log('mordi2');
     }
 };
 
