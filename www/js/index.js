@@ -8,93 +8,63 @@ const estimoteUUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
 let beacons = {};
 
 let app = {
+    inBackground: false,
+    notificationID: 0,
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+        // Background detection.
+
     },
 
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('pause', function() { app.inBackground = true });
+        document.addEventListener('resume', function() { app.inBackground = false });
     },
 
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         console.log('deviceready');
-
         // Start ranging beacons!
-        app.startRanging();
-
-        // Display beacons in range.
-        setInterval(app.displayBeaconList, 500);
+        app.startMonitoring();
     },
 
-    startRanging: function() {
+    startMonitoring: function() {
     		var delegate = new cordova.plugins.locationManager.Delegate();
 
-    		// Called continuously when ranging beacons.
-    		delegate.didRangeBeaconsInRegion = function(result){
-    			for (var i in result.beacons){
-    				// Insert beacon into table of found beacons.
-    				var beacon = result.beacons[i];
-    				beacon.timeStamp = Date.now();
-            //console.log('Beacon: ' + JSON.stringify(beacon))
+        // Called when starting to monitor a region.
+        // (Not used in this example, included as a reference.)
+        delegate.didStartMonitoringForRegion = function(pluginResult){
+          console.log('didStartMonitoringForRegion:' + JSON.stringify(pluginResult))
+        };
 
-            // Update or insert the unique beacon in the directory
-            var key = beacon.uuid + ':' + beacon.major + ':' + beacon.minor;
-    				beacons[key] = beacon;
-    			}
-    		};
+        delegate.didDetermineStateForRegion = function(result){
+          if (app.inBackground){
+            if (result.region.typeName == 'BeaconRegion' &&
+              result.state == 'CLRegionStateInside'){
+              cordova.plugins.notification.local.schedule({
+                  id: ++app.notificationID,
+                  title: 'Beacon in range',
+                  text: 'Detected a beacon, tap here to open app.'
+                });
+            }
+          }
+        };
 
-    		// Set the delegate object to use.
     		cordova.plugins.locationManager.setDelegate(delegate);
 
     		// This is needed on iOS 8.
     		cordova.plugins.locationManager.requestAlwaysAuthorization();
 
-
         var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(
           'identifier',
           estimoteUUID);
 
-  			// Start ranging.
-  			cordova.plugins.locationManager.startRangingBeaconsInRegion(beaconRegion)
+        // Start monitoring.
+  			cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion)
   				.fail(console.error)
   				.done();
-    },
-
-    displayBeaconList: function(){
-      // Clear beacon view list.
-      $('#beacons').empty();
-
-      var timeNow = Date.now();
-
-      $.each(beacons, function(key, beacon){
-        // Only show beacons that are updated during the last 60 seconds.
-        if (beacon.timeStamp + 60000 > timeNow){
-
-          // Create tag to display beacon data.
-          var element = $(
-            '<li class="container row">'
-            +	'<div class="major">Major: ' + beacon.major + '</div>'
-            +	'<div class="minor">Minor: ' + beacon.minor + '</div>'
-            +	'<div class="separator"></div>'
-            +	'<div class="proximity">Proximity: ' + beacon.proximity + '</div>'
-            +	'<div class="distance">Distance: ' + beacon.accuracy + 'm</div>'
-            + '</li>'
-          );
-
-          //append beacon view list
-          $('#beacons').append(element);
-        }
-      });
-  }
+    }
 };
 
 app.initialize();
