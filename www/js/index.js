@@ -44,6 +44,7 @@ let app = {
     				// Insert beacon into table of found beacons.
     				var beacon = result.beacons[i];
     				beacon.timeStamp = Date.now();
+            //console.log('Beacon: ' + JSON.stringify(beacon))
 
             // Update or insert the unique beacon in the directory
             var key = beacon.uuid + ':' + beacon.major + ':' + beacon.minor;
@@ -74,17 +75,18 @@ let app = {
 
       var timeNow = Date.now();
 
-      // Update beacon list.
       $.each(beacons, function(key, beacon){
         // Only show beacons that are updated during the last 60 seconds.
         if (beacon.timeStamp + 60000 > timeNow){
 
           // Create tag to display beacon data.
           var element = $(
-            '<li>'
-            +	'Major: ' + beacon.major + '<br />'
-            +	'Minor: ' + beacon.minor + '<br />'
-            +	'Proximity: ' + beacon.proximity + '<br />'
+            '<li class="container row">'
+            +	'<div class="major">Major: ' + beacon.major + '</div>'
+            +	'<div class="minor">Minor: ' + beacon.minor + '</div>'
+            +	'<div class="separator"></div>'
+            +	'<div class="proximity">Proximity: ' + beacon.proximity + '</div>'
+            +	'<div class="distance">Distance: ' + beacon.accuracy + 'm</div>'
             + '</li>'
           );
 
