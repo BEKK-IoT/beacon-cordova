@@ -28,7 +28,7 @@ Evothings is a mobile platform enabler for building internet of things (IoT) app
 ##### Using Evothings:
   - Start Evothings Studio.
   - Launch Evothings App on your mobile
-  - Get a connect code in the Studio by clicking "Get Code" under the Connect tab.
+  - Get a connect code in the Studio by clicking "Get Code" under the "Connect" tab.
   - Input the connect code in the mobile app
   - In the studio change the tab to "Examples" and push run on the Hello World app. You should now see the the Hello World app running on your mobile.
   - To insert your own app into the Studio. Change the tab to "My Apps" and drag and drop your application into the tab. You should now be able to run your app through the studio.
