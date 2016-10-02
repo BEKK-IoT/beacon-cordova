@@ -26,4 +26,5 @@
     <engine name="ios" spec="~4.2.1" />
     <engine name="android" spec="~5.2.2" />
     <plugin name="com.unarin.cordova.beacon" spec="https://github.com/petermetz/cordova-plugin-ibeacon.git" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications" />
 </widget>
