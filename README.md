@@ -44,10 +44,101 @@ Evothings is a mobile platform enabler for building internet of things (IoT) app
   - You can set the system to automaticly build changes by using:
     - `gulp watch`
 
-## API
+## API Documentation
+Basic code examples on how to do the different things in Cordova.
 
 ### Beacon Ranging
 
-### Beacon monitoring
+#### Setup ranging
+```js
+var delegate = new cordova.plugins.locationManager.Delegate();
 
-### Mobile notifictions
+// Set the delegate object to use.
+cordova.plugins.locationManager.setDelegate(delegate);
+
+// This is needed on iOS 8.
+cordova.plugins.locationManager.requestAlwaysAuthorization();
+
+const estimoteUUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
+var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(
+          'identifier',
+          estimoteUUID);
+
+// Start ranging.
+cordova.plugins.locationManager.startRangingBeaconsInRegion(beaconRegion)
+	.fail(console.error)
+	.done();
+
+```
+
+### Get ranging result
+```js
+
+// Called continuously when ranging beacons.
+delegate.didRangeBeaconsInRegion = function(result){
+  //result contains beacons found:
+  /*
+  result : {
+    beacons: {
+        major: xxxx,
+        minor: xxxx,
+        proximity: "enum: how far away",
+        accuracy: Distance in meters away
+      }
+   }
+  */
+}
+```          
+
+### Beacon monitoring
+#### Setup monitoring
+```js
+var delegate = new cordova.plugins.locationManager.Delegate();
+
+// Set the delegate object to use.
+cordova.plugins.locationManager.setDelegate(delegate);
+
+// This is needed on iOS 8.
+cordova.plugins.locationManager.requestAlwaysAuthorization();
+
+const estimoteUUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
+var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(
+  'identifier',
+  estimoteUUID);
+
+// Start monitoring.
+cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion)
+	.fail(console.error)
+	.done();
+```
+
+#### Get monitoring result
+```js
+
+
+// Called when starting to monitor a region.
+delegate.didStartMonitoringForRegion = function(result){
+  //maybe do something
+};
+
+delegate.didDetermineStateForRegion = function(result){
+  if (app.inBackground){
+    if (result.region.typeName == 'BeaconRegion' &&
+      result.state == 'CLRegionStateInside'){
+        //Entered beacon region
+        //Do something here
+    }
+  }
+};
+
+
+```
+
+### Mobile notifications
+```js
+cordova.plugins.notification.local.schedule({
+  id: 0, //Some unique int here
+  title: 'title',
+  text: 'description'
+});
+```
