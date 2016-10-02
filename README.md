@@ -1,5 +1,5 @@
 # beacon-cordova
-A starting template for creating cordova apps with beacon interactions
+A starting template for creating Cordova apps with beacon interactions
 
 ## Getting started
 This tutorial shows how to create and build native mobile apps in Javascript, HTML and CSS using the [Apache Cordova](https://cordova.apache.org/) build system. This project contains the code for a simple starting template with the necessary setup already added for creating native iBeacon apps in Android and IOS. So lets start by setting up the Cordova build system, or you can skip ahead to the Evothings section for an easier build/start step.
@@ -7,12 +7,13 @@ This tutorial shows how to create and build native mobile apps in Javascript, HT
 ## Setup
 There is two main ways you can build and play around with the template in a IOS or Android. You can either install cordova and get it to run the template nativly on your phone, or you can use the Evothings ecosystem which allows you to install and run your up through their system on your phone. You can of course use both. We recommend using the Evothings ecosystem as it allows for a quicker workflow. You must use Cordova nativly if you want to publish you app.
 
+
 ### Cordova
 1. Install Cordova:
   - `npm install -g cordova`
-2. Install mobile platforms you with to develop on by following the guide on the following sites. It should also be possible to run the app in the emulator if wanted:
-  - [IOS](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html)
-  - [Andoird](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html)
+2. Install the mobile platforms you wish to develop on by following the guide on the following sites. It should also be possible to run the app in the emulator if wanted:
+  - [iOS](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html)
+  - [Android](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html)
 3. You can check if the installation finished correctly by using the following command:
   - `cordova requirements`
 4. You build the code with
