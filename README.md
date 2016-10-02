@@ -12,7 +12,7 @@ There are two main ways you can build and play around with the template on iOS o
   - `npm install -g cordova`
 2. Install the mobile platforms you wish to develop on by following the guide on the following sites. It should also be possible to run the app in the emulator if wanted:
   - [iOS](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html)
-  - [Andoird](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html)
+  - [Android](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html)
 3. You can check if the installation finished correctly by using the following command:
   - `cordova requirements`
 4. You build the code with
